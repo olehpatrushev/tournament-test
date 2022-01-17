@@ -9,10 +9,10 @@ class Swordsman extends Character
 {
     public $hitPoints = 100;
 
-    protected function getDefaultEquipment()
+    public function __construct($name = null)
     {
-        $equipment = new Equipment();
-        EquipmentManager::equipItem($equipment, Equipment::GREAT_SWORD);
-        return $equipment;
+        parent::__construct($name);
+
+        EquipmentManager::equipItem($this->equipment, Equipment::SWORD);
     }
 }

@@ -9,8 +9,10 @@ class Viking extends Character
 {
     public $hitPoints = 120;
 
-    protected function getDefaultEquipment()
+    public function __construct($name = null)
     {
-        return EquipmentManager::createEquipment(Equipment::AXE);
+        parent::__construct($name);
+
+        EquipmentManager::equipItem($this->equipment, Equipment::AXE);
     }
 }

@@ -13,9 +13,9 @@ class EngagementManager
         $engagement->initCharacterValues($enemy);
         $i = 0;
         while (true) {
-            self::engage($player, $enemy);
+            self::engage($player, $enemy, $engagement);
             if ($player->hitPoints() > 0 && $enemy->hitPoints() > 0) {
-                self::engage($enemy, $player);
+                self::engage($enemy, $player, $engagement);
             } else {
                 break;
             }

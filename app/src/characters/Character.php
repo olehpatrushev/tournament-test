@@ -46,6 +46,4 @@ abstract class Character
     {
         EngagementManager::process($this, $enemy);
     }
-
-    abstract protected function getDefaultEquipment();
 }
