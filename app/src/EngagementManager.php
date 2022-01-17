@@ -50,6 +50,9 @@ class EngagementManager
         }
         $engagement->trigger(Engagement::EVENT_BLOW_DELIVERED, $attacker);
         $damage = EquipmentManager::getBaseDamage($attacker->equipment);
+        if ($attacker instanceof Highlander && $attacker->isVeteran() && $attacker->hitPoints < Highlander::DEFAULT_HIT_POINTS * 0.3) {
+            $damage *= 2;
+        }
         if ($engagement->getCharacterValue($attacker, Engagement::VALUE_IS_POISON_ATTACK)) {
             $damage += 20;
         }
@@ -58,9 +61,6 @@ class EngagementManager
         }
         if ($attacker->equipment->armor === true) {
             $damage -= 1;
-        }
-        if ($attacker instanceof Highlander && $attacker->isVeteran() && $attacker->hitPoints < Highlander::DEFAULT_HIT_POINTS * 0.3) {
-            $damage *= 2;
         }
 
         $enemy->hitPoints -= $damage;
