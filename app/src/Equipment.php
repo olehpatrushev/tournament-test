@@ -13,4 +13,9 @@ class Equipment
     public $weapon;
     public $buckler = false;
     public $armor = false;
+
+    public function isWeapon($weapon): bool
+    {
+        return $this->weapon === $weapon;
+    }
 }

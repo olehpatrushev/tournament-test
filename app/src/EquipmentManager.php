@@ -19,7 +19,7 @@ class EquipmentManager
         ]
     ];
 
-    public static function equipItem(Equipment $equipment, $item)
+    public static function equipItem(Equipment $equipment, $item): void
     {
         switch (true) {
             case array_key_exists($item, self::WEAPONS_CONFIG):
@@ -36,11 +36,13 @@ class EquipmentManager
         }
     }
 
-    public static function getBaseDamage(Equipment $equipment)
+    public static function getBaseDamage(Equipment $equipment): int
     {
-        if ($equipment->weapon === null) {
-            throw new \Exception("Equipment weapon should be set");
-        }
         return self::WEAPONS_CONFIG[$equipment->weapon]['damage'];
+    }
+
+    public static function isTwoHandedWeapon(Equipment $equipment): bool
+    {
+        return self::WEAPONS_CONFIG[$equipment->weapon]['twoHanded'];
     }
 }

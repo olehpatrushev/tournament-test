@@ -35,15 +35,23 @@ class EngagementManager
     protected
     static function engage(Character $attacker, Character $enemy, Engagement $engagement): void
     {
-        if ($attacker->equipment->weapon === Equipment::WEAPON_GREAT_SWORD && $engagement->round % 3 === 0) {
+        if ($attacker->equipment->isWeapon(Equipment::WEAPON_GREAT_SWORD) && $engagement->round % 3 === 0) {
             return;
         }
-        if ($enemy->equipment->buckler === true) {
-            if ($attacker->equipment->weapon === Equipment::WEAPON_AXE) {
-
+        if ($enemy->equipment->buckler === true && !EquipmentManager::isTwoHandedWeapon($enemy->equipment)) {
+            if ($engagement->round % 2 === 1) {
+                if ($attacker->equipment->weapon === Equipment::WEAPON_AXE) {
+                    $engagement->trigger(Engagement::EVENT_AXE_BUCKLER_BLOCK, $enemy);
+                }
+                if ($enemy->equipment->buckler === true) {
+                    return;
+                }
             }
         }
         $damage = EquipmentManager::getBaseDamage($attacker->equipment);
+        if ($enemy->equipment->armor === true) {
+
+        }
         if ($damage) {
 
         }
