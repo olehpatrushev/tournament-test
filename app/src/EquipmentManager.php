@@ -24,4 +24,13 @@ class EquipmentManager
             'twoHanded' => true
         ]
     ];
+
+    public static function createEquipment($weapon, $buckler = false, $armor = false)
+    {
+        $equipment = new Equipment();
+        $equipment->weapon = $weapon;
+        $equipment->buckler = $buckler;
+        $equipment->armor = $armor;
+        return $equipment;
+    }
 }

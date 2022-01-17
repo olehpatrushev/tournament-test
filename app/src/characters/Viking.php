@@ -10,6 +10,6 @@ class Viking extends Character
 
     protected function defaultEquiped()
     {
-        return [EquipmentManager::AXE];
+        return EquipmentManager::createEquipment(EquipmentManager::SWORD);
     }
 }
