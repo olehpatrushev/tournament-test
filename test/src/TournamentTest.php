@@ -1,6 +1,10 @@
 <?php
 namespace Tournament;
 
+use Tournament\characters\Highlander;
+use Tournament\characters\Swordsman;
+use Tournament\characters\Viking;
+
 /**
  * This is a duel simulation
  * Blow exchange are sequential, A engage B means that A will give the first blow, then B will respond, continue till one side death
