@@ -26,7 +26,7 @@ class EngagementManager
             } else {
                 break;
             }
-            if (++$i > 30) {
+            if (++$i > 100) {
                 throw new \Exception('EXCEEDED');
             }
         }
