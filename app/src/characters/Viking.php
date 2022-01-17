@@ -2,14 +2,15 @@
 
 namespace Tournament\characters;
 
+use Tournament\Equipment;
 use Tournament\EquipmentManager;
 
 class Viking extends Character
 {
     protected $hitPoints = 120;
 
-    protected function defaultEquiped()
+    protected function getDefaultEquipment()
     {
-        return EquipmentManager::createEquipment(EquipmentManager::SWORD);
+        return EquipmentManager::createEquipment(Equipment::AXE);
     }
 }

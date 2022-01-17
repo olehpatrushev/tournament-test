@@ -2,14 +2,15 @@
 
 namespace Tournament\characters;
 
+use Tournament\Equipment;
 use Tournament\EquipmentManager;
 
 class Swordsman extends Character
 {
     protected $hitPoints = 100;
 
-    protected function defaultEquiped()
+    protected function getDefaultEquipment()
     {
-        return [EquipmentManager::SWORD];
+        return EquipmentManager::createEquipment(Equipment::SWORD);
     }
 }

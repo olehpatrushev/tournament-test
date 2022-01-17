@@ -4,22 +4,16 @@ namespace Tournament;
 
 class EquipmentManager
 {
-    const SWORD = 'sword';
-    const AXE = 'axe';
-    const GREAT_SWORD = 'great sword';
-    const ARMOR = 'armor';
-    const BUCKLER = 'buckler';
-
     const WEAPONS_CONFIG = [
-        self::SWORD => [
+        Equipment::SWORD => [
             'damage' => 5,
             'twoHanded' => false
         ],
-        self::AXE => [
+        Equipment::AXE => [
             'damage' => 6,
             'twoHanded' => false
         ],
-        self::GREAT_SWORD => [
+        Equipment::GREAT_SWORD => [
             'damage' => 12,
             'twoHanded' => true
         ]
@@ -32,5 +26,18 @@ class EquipmentManager
         $equipment->buckler = $buckler;
         $equipment->armor = $armor;
         return $equipment;
+    }
+
+    public static function equipItem(Equipment $equipment, $item)
+    {
+        if (array_key_exists($item, self::WEAPONS_CONFIG)) {
+            $equipment->weapon = $item;
+        }
+        if ($item === Equipment::BUCKLER) {
+            $equipment->buckler = true;
+        }
+        if ($item === Equipment::ARMOR) {
+            $equipment->armor = true;
+        }
     }
 }

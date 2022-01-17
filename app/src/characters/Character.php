@@ -2,19 +2,22 @@
 
 namespace Tournament\characters;
 
+use Tournament\EquipmentManager;
+
 abstract class Character
 {
     protected $name;
 
     protected $hitPoints;
 
-    protected $equiped = [];
+    protected $equipment = null;
 
     public function __construct($name = null)
     {
         if ($name !== null) {
             $this->name = $name;
         }
+        $this->equipment = $this->getDefaultEquipment();
     }
 
     public function hitPoints()
@@ -24,7 +27,7 @@ abstract class Character
 
     public function equip($item)
     {
-        return $this->equiped[] = $item;
+        EquipmentManager::equipItem($this->equipment, $item);
     }
 
     public function engage(Character $enemy)
@@ -32,5 +35,5 @@ abstract class Character
 
     }
 
-    abstract protected function defaultEquiped();
+    abstract protected function getDefaultEquipment();
 }
