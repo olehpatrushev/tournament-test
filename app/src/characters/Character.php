@@ -2,6 +2,7 @@
 
 namespace Tournament\characters;
 
+use Tournament\EngagementManager;
 use Tournament\EquipmentManager;
 
 abstract class Character
@@ -28,11 +29,12 @@ abstract class Character
     public function equip($item)
     {
         EquipmentManager::equipItem($this->equipment, $item);
+        return $this;
     }
 
     public function engage(Character $enemy)
     {
-
+        EngagementManager::process($this, $enemy);
     }
 
     abstract protected function getDefaultEquipment();
