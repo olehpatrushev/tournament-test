@@ -4,7 +4,6 @@ namespace Tournament;
 
 use Tournament\characters\Character;
 use Tournament\characters\Highlander;
-use Tournament\characters\Swordsman;
 
 class EngagementManager
 {
@@ -27,7 +26,7 @@ class EngagementManager
                 break;
             }
             if (++$i > 100) {
-                throw new \Exception('EXCEEDED');
+                throw new \Exception('EXCEEDED CYCLES COUNT');
             }
         }
         $player->hitPoints = max($player->hitPoints, 0);
@@ -40,7 +39,8 @@ class EngagementManager
         if ($engagement->round % 3 === 0 && $attacker->equipment->isWeapon(Equipment::WEAPON_GREAT_SWORD)) {
             return;
         }
-        if ($engagement->getCharacterValue($enemy, Engagement::VALUE_BUCKLER) && $engagement->round % 2 === 1 && !EquipmentManager::isTwoHandedWeapon($enemy->equipment)) {
+
+        if ($engagement->getCharacterValue($enemy, Engagement::VALUE_BUCKLER) && $engagement->round % 2 === 0 && !EquipmentManager::isTwoHandedWeapon($enemy->equipment)) {
             if ($attacker->equipment->isWeapon(Equipment::WEAPON_AXE)) {
                 $engagement->trigger(Engagement::EVENT_AXE_BUCKLER_BLOCK, $enemy);
             }
@@ -48,13 +48,16 @@ class EngagementManager
                 return;
             }
         }
+
         $engagement->trigger(Engagement::EVENT_BLOW_DELIVERED, $attacker);
+
         $damage = EquipmentManager::getBaseDamage($attacker->equipment);
-        if ($attacker instanceof Highlander && $attacker->isVeteran() && $attacker->hitPoints < Highlander::DEFAULT_HIT_POINTS * 0.3) {
-            $damage *= 2;
-        }
+
         if ($engagement->getCharacterValue($attacker, Engagement::VALUE_IS_POISON_ATTACK)) {
             $damage += 20;
+        }
+        if ($attacker instanceof Highlander && $attacker->isVeteran() && $attacker->hitPoints <= Highlander::DEFAULT_HIT_POINTS * 0.3) {
+            $damage *= 2;
         }
         if ($enemy->equipment->armor === true) {
             $damage -= 3;
