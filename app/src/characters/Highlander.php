@@ -17,7 +17,7 @@ class Highlander extends Character
             $this->hitPoints *= 0.7;
         }
 
-        EquipmentManager::equipItem($this->equipment, Equipment::GREAT_SWORD);
+        EquipmentManager::equipItem($this->equipment, Equipment::WEAPON_GREAT_SWORD);
     }
 
     public function isVeteran(): boolean

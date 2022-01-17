@@ -5,15 +5,15 @@ namespace Tournament;
 class EquipmentManager
 {
     const WEAPONS_CONFIG = [
-        Equipment::SWORD => [
+        Equipment::WEAPON_SWORD => [
             'damage' => 5,
             'twoHanded' => false
         ],
-        Equipment::AXE => [
+        Equipment::WEAPON_AXE => [
             'damage' => 6,
             'twoHanded' => false
         ],
-        Equipment::GREAT_SWORD => [
+        Equipment::WEAPON_GREAT_SWORD => [
             'damage' => 12,
             'twoHanded' => true
         ]

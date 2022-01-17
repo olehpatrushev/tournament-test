@@ -13,6 +13,6 @@ class Swordsman extends Character
     {
         parent::__construct($name);
 
-        EquipmentManager::equipItem($this->equipment, Equipment::SWORD);
+        EquipmentManager::equipItem($this->equipment, Equipment::WEAPON_SWORD);
     }
 }

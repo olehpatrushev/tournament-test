@@ -11,8 +11,7 @@ class Engagement
     public function initCharacterValues(Character $character)
     {
         $this[$character] = [
-            'bucklerBlocks' => 0,
-            'attacksCount' => 0
+            'bucklerBlocksCount' => 0
         ];
     }
 }

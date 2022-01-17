@@ -4,9 +4,9 @@ namespace Tournament;
 
 class Equipment
 {
-    const SWORD = 'sword';
-    const AXE = 'axe';
-    const GREAT_SWORD = 'great sword';
+    const WEAPON_SWORD = 'sword';
+    const WEAPON_AXE = 'axe';
+    const WEAPON_GREAT_SWORD = 'great sword';
     const ARMOR = 'armor';
     const BUCKLER = 'buckler';
 

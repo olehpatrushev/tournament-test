@@ -33,8 +33,16 @@ class EngagementManager
     }
 
     protected
-    static function engage(Character $attacker, Character $enemy, Engagement $engagement)
+    static function engage(Character $attacker, Character $enemy, Engagement $engagement): void
     {
+        if ($attacker->equipment->weapon === Equipment::WEAPON_GREAT_SWORD && $engagement->round % 3 === 0) {
+            return;
+        }
+        if ($enemy->equipment->buckler === true) {
+            if ($attacker->equipment->weapon === Equipment::WEAPON_AXE) {
+
+            }
+        }
         $damage = EquipmentManager::getBaseDamage($attacker->equipment);
         if ($damage) {
 
