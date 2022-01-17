@@ -3,22 +3,32 @@
 namespace Tournament\characters;
 
 use Tournament\EngagementManager;
+use Tournament\Equipment;
 use Tournament\EquipmentManager;
 
 abstract class Character
 {
-    protected $name;
+    /**
+     * @property string $name
+     */
+    public $name;
 
-    protected $hitPoints;
+    /**
+     * @property integer $hitPoints
+     */
+    public $hitPoints;
 
-    protected $equipment = null;
+    /**
+     * @property Equipment $equipment
+     */
+    public $equipment;
 
     public function __construct($name = null)
     {
         if ($name !== null) {
             $this->name = $name;
         }
-        $this->equipment = $this->getDefaultEquipment();
+        $this->equipment = new Equipment();
     }
 
     public function hitPoints()

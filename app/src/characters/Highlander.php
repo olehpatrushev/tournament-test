@@ -8,7 +8,7 @@ use Tournament\EquipmentManager;
 class Highlander extends Character
 {
     const MOD_VICIOUS = 'Vicious';
-    protected $hitPoints = 150;
+    public $hitPoints = 150;
 
     public function __construct($name = null)
     {
@@ -16,10 +16,7 @@ class Highlander extends Character
         if ($name === self::MOD_VICIOUS) {
             $this->hitPoints *= 0.7;
         }
-    }
 
-    protected function getDefaultEquipment()
-    {
-        return EquipmentManager::createEquipment(Equipment::GREAT_SWORD);
+        EquipmentManager::equipItem($this->equipment, Equipment::GREAT_SWORD);
     }
 }

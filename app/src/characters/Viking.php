@@ -7,7 +7,7 @@ use Tournament\EquipmentManager;
 
 class Viking extends Character
 {
-    protected $hitPoints = 120;
+    public $hitPoints = 120;
 
     protected function getDefaultEquipment()
     {

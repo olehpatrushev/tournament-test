@@ -7,10 +7,12 @@ use Tournament\EquipmentManager;
 
 class Swordsman extends Character
 {
-    protected $hitPoints = 100;
+    public $hitPoints = 100;
 
     protected function getDefaultEquipment()
     {
-        return EquipmentManager::createEquipment(Equipment::SWORD);
+        $equipment = new Equipment();
+        EquipmentManager::equipItem($equipment, Equipment::GREAT_SWORD);
+        return $equipment;
     }
 }

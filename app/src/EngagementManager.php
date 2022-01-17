@@ -9,9 +9,35 @@ class EngagementManager
     public static function process(Character $player, Character $enemy)
     {
         $engagement = new Engagement();
-        while ($player->hitPoints() > 0 && $enemy->hitPoints() > 0) {
+        $engagement->initCharacterValues($player);
+        $engagement->initCharacterValues($enemy);
+        $i = 0;
+        while (true) {
+            self::engage($player, $enemy);
+            if ($player->hitPoints() > 0 && $enemy->hitPoints() > 0) {
+                self::engage($enemy, $player);
+            } else {
+                break;
+            }
+            if ($player->hitPoints() > 0 && $enemy->hitPoints() > 0) {
+                $engagement->round++;
+            } else {
+                break;
+            }
+            if (++$i > 30) {
+                throw new \Exception('EXCEEDED');
+            }
+        }
+        $player->hitPoints = max($player->hitPoints, 0);
+        $enemy->hitPoints = max($enemy->hitPoints, 0);
+    }
 
-            $engagement->round++;
+    protected
+    static function engage(Character $attacker, Character $enemy, Engagement $engagement)
+    {
+        $damage = EquipmentManager::getBaseDamage($attacker->equipment);
+        if ($damage) {
+
         }
     }
 }

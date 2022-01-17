@@ -19,25 +19,28 @@ class EquipmentManager
         ]
     ];
 
-    public static function createEquipment($weapon, $buckler = false, $armor = false)
-    {
-        $equipment = new Equipment();
-        $equipment->weapon = $weapon;
-        $equipment->buckler = $buckler;
-        $equipment->armor = $armor;
-        return $equipment;
-    }
-
     public static function equipItem(Equipment $equipment, $item)
     {
-        if (array_key_exists($item, self::WEAPONS_CONFIG)) {
-            $equipment->weapon = $item;
+        switch (true) {
+            case array_key_exists($item, self::WEAPONS_CONFIG):
+                $equipment->weapon = $item;
+                break;
+            case $item === Equipment::BUCKLER:
+                $equipment->buckler = true;
+                break;
+            case $item === Equipment::ARMOR:
+                $equipment->armor = true;
+                break;
+            default:
+                throw new \Exception("Cannot recognize item $item");
         }
-        if ($item === Equipment::BUCKLER) {
-            $equipment->buckler = true;
+    }
+
+    public static function getBaseDamage(Equipment $equipment)
+    {
+        if ($equipment->weapon === null) {
+            throw new \Exception("Equipment weapon should be set");
         }
-        if ($item === Equipment::ARMOR) {
-            $equipment->armor = true;
-        }
+        return self::WEAPONS_CONFIG[$equipment->weapon]['damage'];
     }
 }
